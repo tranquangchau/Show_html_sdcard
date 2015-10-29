@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
-        android:text="file:///sdcard/a1/chuong_1/bai1.html"
+        android:text="file:///sdcard/a1/menu.html"
         android:textSize="11dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
