@@ -1,0 +1,157 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+		
+        <style>
+            * {margin: 0; padding: 0;}
+
+            div {
+                margin: 10px;
+            }
+
+            ul {
+                list-style-type: none;
+                width: 100%;
+            }
+            h3 {
+                font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+            }
+
+            li img {
+                float: left;
+                margin: 0 15px 0 0;
+            }
+            img{
+                height: 70px;
+            }
+
+            li p {
+                font: 200 12px/1.5 Georgia, Times New Roman, serif;
+            }
+
+            li {
+                height: 73px;
+                padding: 10px;
+                overflow: auto;
+                border-top: solid;
+                border-top-color: #e0e0e0;
+                border-width: 1px;
+            }
+            li:last-child{
+                border-bottom: solid;
+                border-bottom-color: #e0e0e0;
+                border-width: 1px;
+            }
+
+            li:hover {
+                background: #eee;
+                cursor: pointer;
+            }
+
+            a:link {
+                text-decoration: none;
+                color: #3e3a39;
+                outline: none !important;
+            }
+            li > a {
+                display: block;
+                height: 70px;
+
+            }
+        </style>
+        <script>
+            function first_load() {
+                var server = "http://developer.j-tec.com.vn/projects/android/sach_data/";
+                var local = "http://192.168.0.15/a/sach_data";
+                var address = server;
+                var data_link = [
+                    "null",
+                    address+"/hinhanh/1.jpg",
+                    address+"/hinhanh/2.jpg",
+                    address+"/hinhanh/3.jpg",
+                    address+"/hinhanh/4.jpg",
+                    address+"/hinhanh/5.jpg",
+                    address+"/hinhanh/6.jpg",
+                    address+"/hinhanh/7.jpg",
+                    address+"/hinhanh/8.jpg",
+                ];
+                //alert("load first");
+                Android.onload_first(data_link);
+            }
+            function reload(){
+                window.location.reload();
+                //alert("reload");
+                Android.reload_ok();
+            }
+        </script>
+    </head>
+    <body onload="first_load()">
+        <div>
+            <ul>
+                <li>
+<!--                    <a href="javascript:void(0)" onclick="Android.load('http://192.168.0.15/a/sach_data/bai1/bai1.html');">Click Me</a>-->
+                    <!--<a href="./bai1/bai1.html">-->
+                    <a href="javascript:void(0)" onclick="Android.load('http://developer.j-tec.com.vn/projects/android/sach_data/bai1/bai1.html');">
+                        <img src="./hinhanh/1.jpg">
+                        <h3>第1課</h3>
+                        <p>ことば / 会話 / 練習 Ａ / 練習 Ｂ / 練習 Ｃ / 問題 / 文法 <ruby>佐藤<rp>(</rp><rt>さとう</rt><rp></rp></ruby></p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="./bai1.html">
+                        <img src="./hinhanh/2.jpg">
+                        <h3>Bài 1 cũ</h3>
+                        <p>Lorem ipsum dolor sit amet...</p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="test_confirm.html">
+                        <img src="./hinhanh/3.jpg">
+                        <h3>test_confirm</h3>
+                        <p>Test alert confirm...</p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="./baitest/baitest.html">
+                        <img src="./hinhanh/4.jpg">
+                        <h3>bai test 10.mp3</h3>
+                        <p>Lorem ipsum dolor sit amet...</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="test_long_press.html">
+                        <img src="./hinhanh/5.jpg">
+                        <h3>test_long_press</h3>
+                        <p>test_long_press...</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="./test/end.html">
+                        <img src="./hinhanh/6.jpg">
+                        <h3>End</h3>
+                        <p>Lorem ipsum dolor sit amet...</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="bai7.html">
+                        <img src="./hinhanh/7.jpg">
+                        <h3>Bai7</h3>
+                        <p>Lorem ipsum dolor sit amet...</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="./bai_1/bai1.html">
+                        <img src="./hinhanh/8.jpg">
+                        <h3>Bai_1_Final</h3>
+                        <p>Lorem ipsum dolor sit amet...</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+    </body>
+</html>

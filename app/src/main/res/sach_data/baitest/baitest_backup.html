@@ -1,0 +1,182 @@
+<html>
+<meta charset="UTF-8">
+<style>
+.selected{
+color:red}
+.selected_none{
+color:green;}
+
+.active {
+    color: red;
+    
+}
+.banner{
+    position: fixed;
+    bottom: 0px;
+}
+.content{margin-top:50px;}
+</style>
+
+<SCRIPT type="text/javascript">
+    function showAndroidToast(toast,elem) {
+		var a = document.getElementsByTagName('p')
+		for (i = 0; i < a.length; i++) {
+			a[i].classList.remove('active')
+		}
+		elem.classList.add('active');
+		
+		
+		
+		Android.showToast(toast);	
+//alert(data_link_mp3[toast]);		
+		
+    }
+	function showAndroidToast1(toast) {
+			//alert("1234");
+			var x = document.getElementsByTagName('p');
+			for (i = 0; i < x.length; i++) {
+				x[i].classList.remove('active');
+			}
+			//elem.classList.add('active');
+			x[3].classList.add('active');
+			
+			//x[2].classList.remove("active");
+			Android.showToast(3);
+    }
+	function showAndroidToast0(toast) {
+			//alert("1234");
+			var x = document.getElementsByTagName('p');
+			for (i = 0; i < x.length; i++) {
+				x[i].classList.remove('active');
+			}
+			//elem.classList.add('active');
+			x[toast].classList.add('active');
+			jump1(toast);
+			//x[2].classList.remove("active");
+			//Android.showToast(3);
+    }
+	
+	function goBack() {
+    window.history.back();
+	}
+
+	function stopPlay() {
+		Android.stopPlay();
+	}
+	function setselect() {
+		var a = document.getElementsByTagName('p')
+		for (i = 0; i < a.length; i++) {
+			a[i].classList.remove('active')
+		}
+		
+		var elem = document.getElementById("content").selectedIndex = "3";
+		var text = "Kiwi";
+		elem.add(text);
+		elem.setAttribute('class', 'active');
+		//elem.classList.add('active');
+	}
+	function load(){
+	send_value();
+	}
+	function send_value(){
+		var local = "http://192.168.0.15/a/sach/";
+		var folder ="baitest/"		
+		var server="http://developer.j-tec.com.vn/projects/android/sach/";
+		var goc_nhac=server+folder;
+		var data_link_mp3=[
+		"null",
+		goc_nhac+"1.mp3",
+		goc_nhac+"2.mp3",
+		goc_nhac+"3.mp3",
+		goc_nhac+"4.mp3",
+		goc_nhac+"5.mp3",
+		goc_nhac+"6.mp3",
+		goc_nhac+"7.mp3",
+		goc_nhac+"8.mp3",
+		goc_nhac+"9.mp3",
+		goc_nhac+"10.mp3",
+		];
+		Android.value_linkmp3(data_link_mp3);
+	}
+	
+	function get_bytag(){
+		var x = document.getElementsByTagName('p');
+		//document.getElementById("demo").innerHTML = x[2].innerHTML;
+		//x[2].style.backgroundColor =    'green';
+		//alert("1234");
+		x[2].classList.add('active');
+		//x[2].classList.remove("active");
+	}
+	function get_bytag3(){
+		var x = document.getElementsByTagName('p');
+		//document.getElementById("demo").innerHTML = x[2].innerHTML;
+		//x[2].style.backgroundColor =    'green';
+		
+		x[3].onclick = showAndroidToast1('http://developer.j-tec.com.vn/projects/android/nhac/iphone_6_plus.mp3');		
+	}
+	
+	function jump(h){
+		var top = document.getElementById(h).offsetTop;
+		window.scrollTo(0, top);
+	}
+	
+	function jump1(h){
+	var x = document.getElementsByTagName('p');
+	var top = x[h].offsetTop;
+    //var top = document.getElementById(h).offsetTop;
+    window.scrollTo(0, top);
+	}
+	
+		
+</script>
+<body onload="load()">
+
+
+<div class="banner">
+<button onclick="goBack()">Back</button> <button onclick="stopPlay()">Stop</button> <button onclick="get_bytag()">set 2</button> <button onclick="get_bytag3()">set 3</button>
+<button onclick="jump('one')">Jump end</button> <button onclick="jump1('one')">Jump p5</button>
+</div>
+<div class="content" id="content">
+<br>
+
+<p onClick="showAndroidToast(1,this)">第1課</p>
+
+<p onClick="showAndroidToast(2,this)">ことば</p>
+
+<p onClick="showAndroidToast(3,this)">1．わたし </p>
+
+<p onClick="showAndroidToast(4,this)">2．わたしたち</p>
+
+<p onClick="showAndroidToast(5,this)">3．あなた</p>
+
+<p onClick="showAndroidToast(6,this)">4．あのひと あの人</p>
+
+<p onClick="showAndroidToast(7,this)">（あのかた） あの方</p>
+
+<p onClick="showAndroidToast(8,this)">5．みなさん 皆さん </p>
+
+<p onClick="showAndroidToast(9,this)">6．～さん</p>
+
+<p onClick="showAndroidToast(10,this)">7．～ちゃん</p>
+<p>Dòng này 11</p>
+<p>8．～くん ～君</p>
+
+<p>9．～じん ～人</p>
+
+<p>10．せんせい 先生</p>
+
+<p>11．きょうし 教師</p>
+
+<p>12．がくせい 学生</p>
+
+<p>13．かいしゃいん 会社員</p>
+
+<p>14．しゃいん 社員</p>
+
+<p>15．ぎんこういん 銀行員</p>
+
+
+<div id="one">one</div>
+</div>
+</body>
+</html>
