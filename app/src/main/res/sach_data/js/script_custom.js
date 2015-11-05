@@ -3,9 +3,28 @@ $.mobile.loading("hide");
 $.mobile.loading().hide();
 var bien1 = 1, bien2 = 2;
 $(function () {
-    $(document).on('vmousedown', function (event) {
-        holdCords.holdX = event.pageX;
-        holdCords.holdY = event.pageY;
+    $(document).on('vmousedown vmouseup', function (event) {
+        //holdCords.holdX = event.pageX;
+        holdCords.holdX = event.clientX;
+        //holdCords.holdY = event.pageY;
+        holdCords.holdY = event.clientY;
+
+//        if (event.pageX != undefined && event.pageY != undefined) {
+//            holdCords.holdX = event.pageX;
+//            holdCords.holdY = event.pageY;
+//        }
+//        else {
+////            holdCords.holdX = event.clientX + document.body.scrollLeft +document.documentElement.scrollLeft;
+////            holdCords.holdY = event.clientY + document.body.scrollTop +document.documentElement.scrollTop;
+//            holdCords.holdX = 0;
+//            holdCords.holdY = 0;
+//        }
+        $('body').click(function () {
+            // do something here
+            var $menu = $('#menu');
+            $menu.hide();
+        });
+
     });
 
     //$(document).on('taphold', function(e){
@@ -97,12 +116,12 @@ function test2() {
 
 //script for android
 function showAndroidToast(toast, elem) {
-    var a = document.getElementsByTagName('p')
+    var a = document.getElementsByTagName('p');
     for (i = 0; i < a.length; i++) {
-        a[i].classList.remove('active')
+        a[i].classList.remove('active');
     }
     elem.classList.add('active');
-
+    //alert(toast);	
     Android.showToast(toast);
 //alert(data_link_mp3[toast]);		
 
@@ -132,7 +151,7 @@ function showAndroidToast0(toast) {
     //Android.showToast(3);
 }
 
-function showAndroidToast0_1(toast) {
+function showAndroidToast11(toast) {
     //alert("1234");
     var x = document.getElementsByTagName('p');
     for (i = 0; i < x.length; i++) {
@@ -175,7 +194,7 @@ function jump(h) {
 
     var x1 = document.getElementsByTagName('p');
     $('html, body').animate({
-        scrollTop: $(x1[h]).offset().top
+        scrollTop: $(x1[h]).offset().top-100
     }, 200);
 }
 
@@ -186,8 +205,3 @@ function jump1(h) {
     window.scrollTo(0, top);
 }
 
-$('body').click(function () {
-    // do something here
-    var $menu = $('#menu');
-   $menu.hide();
-});

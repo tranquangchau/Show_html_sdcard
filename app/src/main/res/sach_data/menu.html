@@ -1,6 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <title>Test</title>
 		
         <style>
             * {margin: 0; padding: 0;}
@@ -75,13 +76,24 @@
                     address+"/hinhanh/7.jpg",
                     address+"/hinhanh/8.jpg",
                 ];
-                //alert("load first");
+                //alert("first_load");
                 Android.onload_first(data_link);
+                
             }
             function reload(){
                 window.location.reload();
                 //alert("reload");
                 Android.reload_ok();
+            }
+            function link1(){
+//                Android.load_url("http://192.168.0.15/a/sach_data/bai1/bai1.html");
+                Android.load_url("http://developer.j-tec.com.vn/projects/android/sach_data/bai1/bai1.html");
+                
+            }
+            function linkdelete(){
+//                Android.load_url("http://192.168.0.15/a/sach_data/bai1/bai1.html");
+                Android.load_url("http://developer.j-tec.com.vn/projects/android/sach_data/setting/setting.html");
+                
             }
         </script>
     </head>
@@ -89,9 +101,7 @@
         <div>
             <ul>
                 <li>
-<!--                    <a href="javascript:void(0)" onclick="Android.load('http://192.168.0.15/a/sach_data/bai1/bai1.html');">Click Me</a>-->
-                    <!--<a href="./bai1/bai1.html">-->
-                    <a href="javascript:void(0)" onclick="Android.load('http://developer.j-tec.com.vn/projects/android/sach_data/bai1/bai1.html');">
+                    <a href="javascript:void(0)" onclick="link1()">
                         <img src="./hinhanh/1.jpg">
                         <h3>第1課</h3>
                         <p>ことば / 会話 / 練習 Ａ / 練習 Ｂ / 練習 Ｃ / 問題 / 文法 <ruby>佐藤<rp>(</rp><rt>さとう</rt><rp></rp></ruby></p>
@@ -99,9 +109,9 @@
                 </li>
 
                 <li>
-                    <a href="./bai1.html">
+                    <a href="javascript:void(0)" onclick="linkdelete()">
                         <img src="./hinhanh/2.jpg">
-                        <h3>Bài 1 cũ</h3>
+                        <h3>Setting -Delete</h3>
                         <p>Lorem ipsum dolor sit amet...</p>
                     </a>
                 </li>

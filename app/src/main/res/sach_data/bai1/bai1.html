@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="../css/css_test.css" />
+
         <link rel="stylesheet" type="text/css" href="../css/style_custom.css" />
 
         <meta charset=utf-8 />
@@ -26,29 +27,42 @@
                 border-top-color: #DCDCDC;
                 border-width: 1px;
             }
+            .banner_1{
+                position: fixed;
+                top: 0px;
+                right: 90px;
+                z-index: 132137;
+                float: left;                
+                
+            }
+            .banner_1 >label{
+                
+                padding-left: 0px;
+                padding-right: 0px;
+                margin-right: 5px;
+            }
+            .banner_2{
+                position: fixed;
+                top: 0px;
+                right: 15px;
+                z-index: 132137;
+                float: left;
+                
+                    
+            }
+            input, label, .ui-checkbox input{
+                display: inline-block! important;
+            }
+
+
+
         </style>
         <script src="../js/jquery-1.10.2.min.js"></script>		
         <script src="../js/jquery.mobile-1.4.5.min.js"></script>
         <script src="../js/script_custom.js"></script>
         <script>
             function send_value() {
-                var local = "http://192.168.0.15/a/sach/";
-                var folder = "baitest/";
-                var server = "http://developer.j-tec.com.vn/projects/android/sach/";
-                var goc_nhac = local + folder;
-                var data_link_mp3 = [
-                    "null",
-                    goc_nhac + "1.mp3",
-                    goc_nhac + "2.mp3",
-                    goc_nhac + "3.mp3",
-                    goc_nhac + "4.mp3",
-                    goc_nhac + "5.mp3",
-                    goc_nhac + "6.mp3",
-                    goc_nhac + "7.mp3",
-                    goc_nhac + "8.mp3",
-                    goc_nhac + "9.mp3",
-                    goc_nhac + "10.mp3",
-                ];
+
                 //alert("send valyue");
                 //Android.value_linkmp3(data_link_mp3);
                 var server = "http://developer.j-tec.com.vn/projects/android/sach_data/";
@@ -71,16 +85,32 @@
                     address + "/bai1/img/8.jpg",
                 ];
                 //alert("load onload_first");           
-                    Android.onload_first(data_link);
-                
+                Android.onload_first(data_link);
+
             }
             function reload() {
                 window.location.reload();
                 //alert("reload");
-                Android.reload_ok();
+                var local = "http://192.168.0.15/a/sach_data/";
+                var folder = "bai1/";
+                var server = "http://developer.j-tec.com.vn/projects/android/sach_data/";
+                var goc_nhac = server + folder;
+                var data_link_mp3 = [];
+                var i = 1;
+                //data_link_mp3[0]="null";
+                for (i; i < 140; i++) {
+                    data_link_mp3[i] = goc_nhac + i + ".mp3";
+                }
+                //alert("reload_ok_listmp3");
+                Android.reload_ok_listmp3(data_link_mp3);
             }
             function load() {
+                //alert("send value");
                 send_value();
+            }
+            function is_checkbook(){                
+                var x = document.getElementById("check_book").checked;
+                Android.is_playyall(x);
             }
         </script>
     </head>
@@ -93,31 +123,46 @@
 
         <!--        <div class="banner">
                     <button onclick="goBack()">Back</button> <button onclick="stopPlay()">Stop</button>
-                </div>-->
-        <nav class="navbar navbar-default">
+        -->               
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
-                <div class="navbar-header">                    
-                    <a href="bai1.html" rel="external" class="btn navbar-brand">Index</a>
-                    <a href="test1.html" rel="external" class="btn navbar-brand">Test 1</a>
-                    <a href="test2.html" rel="external"  class="btn navbar-brand">Test 2</a>
+                <div class="navbar-header">                                                      
+                    <a href="bai1.html" rel="external" class="btn  navbar-left" style="padding-left: 2px;padding-right: 2px;">Index</a>
+                    <a href="test1.html" rel="external" class="btn  navbar-left" style="padding-left: 2px;padding-right: 2px;">Test 1</a>
+                    <a href="test2.html" rel="external"  class="btn  navbar-left" style="padding-left: 2px; padding-right: 2px;">Test 2</a>
                 </div>
             </div>
         </nav>
 
+        <div class="banner_1">
+            <label onclick="stopPlay()" class="btn">Stop</label>
+            <!--<label onclick="stopPlay()" class="btn"><input type="checkbox" value="first_checkbox" class="btn">P all</label>-->
+        </div>
+        <div class="banner_2">
+            <!--<label onclick="stopPlay()" class="btn">Stop</label>-->
+            <!--<input type="checkbox" value="first_checkbox" class="btn">P all-->
+            <!--<label for="male">Male</label>-->
+            <!--<input type="checkbox" name="gender" id="male" value="male" class="checkbox">-->
+            <div class="checkbox-inline">
+                <label style="margin-left: 17px; font-weight: normal; font-size: 14px; padding-top: 5px;"><input type="checkbox" id="check_book" value="checkbox" style="padding-top: 0px;">Play all</label>
+            </div>
+        </div>
+        
 
         <div class="container content">
             <br>
             <div class="row">
                 <div class="col-xs-12 title"><p onClick="showAndroidToast(1, this)">第１課</p></div>
             </div>
-            <div class="row">
-                <div class="col-xs-12"><p onClick="showAndroidToast(2, this)">ことば</p></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-12"><p onClick="showAndroidToast(3, this)">1.わ<span class="cr">たし</span></p></div>
-                <div class="col-xs-6 col-xxs-12"></div>
-            </div>
-            <div class="khoang contaner" id="contaner1" itemid="4,6">
+            <div class="khoang contaner" id="contaner1" itemid="1,34">
+                <div class="row">
+                    <div class="col-xs-12"><p onClick="showAndroidToast(2, this)">ことば</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-12"><p onClick="showAndroidToast(3, this)">1.わ<span class="cr">たし</span></p></div>
+                    <div class="col-xs-6 col-xxs-12"></div>
+                </div>
+
                 <div class="row">
                     <div class="col-xs-6 col-xxs-12"><p onClick="showAndroidToast(4, this)">2．わ<span class="cr">たし</span>たち</p></div>
                     <div class="col-xs-6 col-xxs-12"></div>
@@ -132,300 +177,311 @@
                     <div class="col-xs-6 col-xxs-6">あの人 <br /> &nbsp;&nbsp;あの 方</div>
 
                 </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(7, this)">5．み<span class="cr">な</span>さん</p></div>
-                <div class="col-xs-6 col-xxs-6">皆さん</div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(8, this)">6．～さん</p></div>
-                <div class="col-xs-6 col-xxs-6"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(9, this)">7．～ちゃん</p></div>
-                <div class="col-xs-6 col-xxs-6"></div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(10, this)">8．～くん</p></div>
-                <div class="col-xs-6 col-xxs-6">～君</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">9．～じん</div>
-                <div class="col-xs-6 col-xxs-6">～人</div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">10．せ<span class="cr">んせ</span>い</div>
-                <div class="col-xs-6 col-xxs-6">先生</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">11．<span class="cr">きょ</span>うし	</div>
-                <div class="col-xs-6 col-xxs-6">教師</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">12．が<span class="cr">くせい</span></div>
-                <div class="col-xs-6 col-xxs-6">学生</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">13．か<span class="cr">いしゃ</span>いん</div>
-                <div class="col-xs-6 col-xxs-6">会社員</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">14．<span class="cr">しゃ</span>いん</div>
-                <div class="col-xs-6 col-xxs-6">社員</div>
-            </div>
-            <br>            
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">15．ぎ<span class="cr">んこ</span>ういん</div>
-                <div class="col-xs-6">銀行員</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">16．い<span class="cr">しゃ	</span></div>
-                <div class="col-xs-6">医者</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">17．け<span class="cr">んきゅ</span>うしゃ</div>
-                <div class="col-xs-6">研究者</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">18．エ<span class="cr">ンジ</span>ニア</div>
-                <div class="col-xs-6"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">19．だ<span class="cr">いがく</span></div>
-                <div class="col-xs-6">大学</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">20．びょ<span class="cr">ういん</span></div>
-                <div class="col-xs-6 col-xxs-6">病院</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">21．<span class="cr">で</span>んき</div>
-                <div class="col-xs-6 col-xxs-6">電気</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">22．<span class="cr">だ</span>れ（<span class="cr">ど</span>なた）</div>
-                <div class="col-xs-6 col-xxs-6"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">23．…さい</div>
-                <div class="col-xs-6 col-xxs-6">…歳</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">24. <span class="cr">な</span>んさい <br />&nbsp;&nbsp; （ お<span class="cr">いくつ</span>）</div>
-                <div class="col-xs-6 col-xxs-6">何歳</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">25. <span class="cr">は</span>い</div>
-                <div class="col-xs-6 col-xxs-6"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">26. い<span class="cr">いえ</span></div>
-                <div class="col-xs-6 col-xxs-6"></div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">27. し<span class="cr">つ</span>れいですが</div>
-                <div class="col-xs-6 col-xxs-6">失礼ですが</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">28. お<span class="cr">なまえは</span>？</div>
-                <div class="col-xs-6 col-xxs-6">お名前は？</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">29. は<span class="cr">じめまし</span>て。</div>
-                <div class="col-xs-6 col-xxs-6">初めまして。</div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-12">30. <span class="cr">ど</span>うぞ　よ<span class="cr">ろしく</span>　「お<span class="cr">ねがいしま</span>す」。<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; どうぞ　よろしく　　[お願いします]。</div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">31. こ<span class="cr">ちらは</span>　～さんです。</div>
-                <div class="col-xs-6 col-xxs-6"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-xxs-6">32. ～から　き<span class="cr">ま</span>した。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;～から 来ました。</div>
-                <div class="col-xs-6 col-xxs-6"></div>
+
+                <br>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(7, this)">5．み<span class="cr">な</span>さん</p></div>
+                    <div class="col-xs-6 col-xxs-6">皆さん</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(8, this)">6．～さん</p></div>
+                    <div class="col-xs-6 col-xxs-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(9, this)">7．～ちゃん</p></div>
+                    <div class="col-xs-6 col-xxs-6"></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(10, this)">8．～くん</p></div>
+                    <div class="col-xs-6 col-xxs-6">～君</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(11, this)">9．～じん</p></div>
+                    <div class="col-xs-6 col-xxs-6">～人</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(12, this)">10．せ<span class="cr">んせ</span>い</p></div>
+                    <div class="col-xs-6 col-xxs-6">先生</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(13, this)">11．<span class="cr">きょ</span>うし</p></div>
+                    <div class="col-xs-6 col-xxs-6">教師</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(14, this)">12．が<span class="cr">くせい</span></p></div>
+                    <div class="col-xs-6 col-xxs-6">学生</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(15, this)">13．か<span class="cr">いしゃ</span>いん</p></div>
+                    <div class="col-xs-6 col-xxs-6">会社員</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(16, this)">14．<span class="cr">しゃ</span>いん</p></div>
+                    <div class="col-xs-6 col-xxs-6">社員</div>
+                </div>
+                <br>            
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(17, this)">15．ぎ<span class="cr">んこ</span>ういん</p></div>
+                    <div class="col-xs-6">銀行員</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(18, this)">16．い<span class="cr">しゃ	</span></p></div>
+                    <div class="col-xs-6">医者</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(19, this)">17．け<span class="cr">んきゅ</span>うしゃ</p></div>
+                    <div class="col-xs-6">研究者</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(20, this)">18．エ<span class="cr">ンジ</span>ニア</p></div>
+                    <div class="col-xs-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(21, this)">19．だ<span class="cr">いがく</span></p></div>
+                    <div class="col-xs-6">大学</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(22, this)">20．びょ<span class="cr">ういん</span></p></div>
+                    <div class="col-xs-6 col-xxs-6">病院</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(23, this)">21．<span class="cr">で</span>んき</p></div>
+                    <div class="col-xs-6 col-xxs-6">電気</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(24, this)">22．<span class="cr">だ</span>れ（<span class="cr">ど</span>なた）</p></div>
+                    <div class="col-xs-6 col-xxs-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(25, this)">23．…さい</p></div>
+                    <div class="col-xs-6 col-xxs-6">…歳</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(26, this)">24. <span class="cr">な</span>んさい <br />&nbsp;&nbsp; （ お<span class="cr">いくつ</span>）</p></div>
+                    <div class="col-xs-6 col-xxs-6">何歳</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(27, this)">25. <span class="cr">は</span>い</p></div>
+                    <div class="col-xs-6 col-xxs-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(28, this)">26. い<span class="cr">いえ</span></p></div>
+                    <div class="col-xs-6 col-xxs-6"></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(29, this)">27. し<span class="cr">つ</span>れいですが</p></div>
+                    <div class="col-xs-6 col-xxs-6">失礼ですが</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(30, this)">28. お<span class="cr">なまえは</span>？</p></div>
+                    <div class="col-xs-6 col-xxs-6">お名前は？</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(31, this)">29. は<span class="cr">じめまし</span>て。</p></div>
+                    <div class="col-xs-6 col-xxs-6">初めまして。</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-12"><p onClick="showAndroidToast(32, this)">30. <span class="cr">ど</span>うぞ　よ<span class="cr">ろしく</span>　「お<span class="cr">ねがいしま</span>す」。<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; どうぞ　よろしく　　[お願いします]。</p></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(33, this)">31. こ<span class="cr">ちらは</span>　～さんです。</p></div>
+                    <div class="col-xs-6 col-xxs-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-xxs-6"><p onClick="showAndroidToast(34, this)">32. ～から　き<span class="cr">ま</span>した。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;～から 来ました。</p></div>
+                    <div class="col-xs-6 col-xxs-6"></div>
+                </div>
             </div>
             <br>
             <br>
             <div class="row">                                
-                <div class="col-xs-12">---以下單字請自行練習發音---</div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(35, this)">---以下單字請自行練習發音---</p></div>
             </div>
             <div class="row">
-                <div class="col-xs-12">ア<span class="cr">メリカ</span></div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(36, this)">ア<span class="cr">メリカ</span></p></div>
             </div>
             <div class="row">
-                <div class="col-xs-12">イ<span class="cr">ギリス</span></div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(37, this)">イ<span class="cr">ギリス</span></p></div>
             </div>
             <div class="row">
-                <div class="col-xs-12"><span class="cr">イ</span>ンド</div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(38, this)"><span class="cr">イ</span>ンド</p></div>
             </div>
             <div class="row">
-                <div class="col-xs-12">イ<span class="cr">ンドネ</span>シア</div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(39, this)">イ<span class="cr">ンドネ</span>シア</p></div>
             </div>
             <div class="row">
-                <div class="col-xs-12"><ruby>韓国<rp>(</rp><rt><span class="cr">か</span>んこく</rt><rp></rp></ruby></div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(40, this)"><ruby>韓国<rp>(</rp><rt><span class="cr">か</span>んこく</rt><rp></rp></ruby></p></div>
             </div>
             <div class="row">
-                <div class="col-xs-12"><span class="cr">タ</span>イ</div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(41, this)"><span class="cr">タ</span>イ</p></div>
             </div>
             <div class="row">
-                <div class="col-xs-12"><ruby>中国<rp>(</rp><rt><span class="cr">ちゅ</span>うごく</rt><rp>)</rp></ruby></div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(42, this)"><ruby>中国<rp>(</rp><rt><span class="cr">ちゅ</span>うごく</rt><rp>)</rp></ruby></p></div>
             </div>
             <div class="row">
-                <div class="col-xs-12"><span class="cr">ド</span>イツ</div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(43, this)"><span class="cr">ド</span>イツ</p></div>
             </div>
             <div class="row">
-                <div class="col-xs-12"><ruby>日本<rp>(</rp><rt>に<span class="cr">ほ</span>ん</rt><rp></rp></ruby></div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(44, this)"><ruby>日本<rp>(</rp><rt>に<span class="cr">ほ</span>ん</rt><rp></rp></ruby></p></div>
             </div>
             <div class="row">
-                <div class="col-xs-12">フ<span class="cr">ランス</span></div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(45, this)">フ<span class="cr">ランス</span></p></div>
             </div>
             <div class="row">
-                <div class="col-xs-12">ブ<span class="cr">ラジル</span></div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(46, this)">ブ<span class="cr">ラジル</span></p></div>
             </div>
             <div class="row">
-                <div class="col-xs-12">さ<span class="cr">くら</span><ruby>大学<rp>(</rp><rt><span class="cr">だ</span>いがく</rt><rp>)</rp></ruby>／<ruby>富士<rp>(</rp><rt>ふ<span class="cr">じ</span></rt><rp>)</rp></ruby><ruby>大学<rp>(</rp><rt><span class="cr">だ</span>いがく</rt><rp>)</rp></ruby></div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(47, this)">さ<span class="cr">くら</span><ruby>大学<rp>(</rp><rt><span class="cr">だ</span>いがく</rt><rp>)</rp></ruby>／<ruby>富士<rp>(</rp><rt>ふ<span class="cr">じ</span></rt><rp>)</rp></ruby><ruby>大学<rp>(</rp><rt><span class="cr">だ</span>いがく</rt><rp>)</rp></ruby></p></div>
             </div>
             <div class="row">
-                <div class="col-xs-12">IMC/ パ<span class="cr">ワ―</span><ruby>電気<rp>(</rp><rt><span class="cr">で</span>んき</rt><rp>)</rp></ruby>／ブ<span class="cr">ラジルエ</span>アー</div>
-            </div>
-            <br>
-            <br>
-            <div class="row">
-                <div class="col-xs-12">AKC </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12"><ruby>神<rt>こ<span class="cr">う</span></rt>戸<rt><span class="cr">べ</span></rt>病<rt><span class="cr">びょ</span>う</rt>院<rt>いん</rt></ruby></div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(48, this)">IMC/ パ<span class="cr">ワ―</span><ruby>電気<rp>(</rp><rt><span class="cr">で</span>んき</rt><rp>)</rp></ruby>／ブ<span class="cr">ラジルエ</span>アー</p></div>
             </div>
             <br>
             <br>
             <div class="row">
-                <div class="col-xs-12"><ruby>文 <rt>ぶん</rt>型 <rt>けい</rt></ruby></div>                
+                <div class="col-xs-12"><p onClick="showAndroidToast(49, this)">AKC </p></div>
             </div>
             <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">1.わたしは　マイク。ミラーです。</div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">2．サントスさんは <ruby>学生<rp>(</rp><rt>がくせい</rt><rp>)</rp></ruby>じゃ ありません。 <br> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（では）</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">3．ミラーさんは <ruby>会<rp>(</rp><rt>かい</rt><rp>)</rp></ruby><ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>ですか。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">４．サントスさんも <ruby>会<rp>(</rp><rt>かい</rt><rp>)</rp></ruby><ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。</div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(50, this)"><ruby>神<rt>こ<span class="cr">う</span></rt>戸<rt><span class="cr">べ</span></rt>病<rt><span class="cr">びょ</span>う</rt>院<rt>いん</rt></ruby></p></div>
             </div>
             <br>
             <br>
             <div class="row">
-                <div class="col-xs-12"><ruby>例<rt>れい</rt>文 <rt>ぶん</rt></ruby></div>                
+                <div class="col-xs-12"><p onClick="showAndroidToast(51, this)"><ruby>文 <rt>ぶん</rt>型 <rt>けい</rt></ruby></p></div>                
             </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">１．［あなたは］　マイク･ミラーさんですか。<br>　　…はい、［わたしは］　マイク･ミラーです。</div>                
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">２．ミラーさんは <ruby>学生<rp>(</rp><rt>がくせい</rt><rp>)</rp></ruby>ですか。 <br> …いいえ、［わたしは］ <ruby>学生<rp>(</rp><rt>がくせい</rt><rp>)</rp></ruby>じゃ ありません。 <br><ruby>会<rt>かい</rt>社<rt>しゃ</rt>員<rt>いん</rt>です。</ruby></div>                
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">３．ワンさんは　エンジニアですか。<br>　　…いいえ、ワンさんは　エンジニアじゃ　ありません。<br><ruby>医<rt>い</rt>者<rt>しゃ</rt>です。</ruby></div>  
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">４．あの　<ruby>方<rt>かた</rt></ruby>は　どなたですか。<br>…ワットさんです。 さくら<ruby>大学<rp>(</rp><rt>だいがく</rt><rp>)</rp></ruby>の <ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>です。</div>  
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">５．テレサちゃんは　<ruby>何<rt>なん</rt>歳<rt>さい</rt></ruby>ですか。<br>　　…９<ruby>歳<rt>さい</rt></ruby>です。</div>  
-            </div>
-            <br>
-            <br>
-            <div class="row">
-                <div class="col-xs-12"><ruby>会<rt>かい</rt>話<rt>わ</rt></ruby></div>                
-            </div>
-
-            <br>
-            <div class="row">
-                <div class="col-xs-12 title"><ruby>初<rp>(</rp><rt>はじ</rt><rp>)</rp></ruby>めまして</div>
-            </div>
-            <br>            
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11"><ruby>佐藤<rp>(</rp><rt>さとう</rt><rp>)</rp></ruby>: おはよう ございます。</div>  
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11"><ruby>山田<rp>(</rp><rt>やまだ</rt><rp>)</rp></ruby>: おはよう ございます。<br>&emsp;&emsp;&emsp; <ruby>佐藤<rp>(</rp><rt>さとう</rt><rp>)</rp></ruby>さん、こちらは マイク･ミラーさんです。</div>  
-            </div>
-            <div class="row">
-                <div class="col-xs-1 col-xxs-1"></div>
-                <div class="col-xs-5 col-xxs-11">
+            <div class="khoang contaner" id="contaner2" itemid="52,55">
+                <div class="row">
                     <div class="col-xs-1"></div>
-                    <div class="col-xs-11">ミラー: <ruby>初<rp>(</rp><rt>はじ</rt><rp>)</rp></ruby>めまして。<br>&emsp;&emsp;&emsp; マイク･ミラーです。<br>&emsp;&emsp;&emsp; アメリカから　ました。<br>&emsp;&emsp;&emsp; どうぞ　よろしく。</div>
-                    <div class="col-xs-1"></div>
-                    <div class="col-xs-11"><ruby>佐藤<rp>(</rp><rt>さとう</rt><rp>)</rp></ruby>： <ruby>佐藤<rp>(</rp><rt>さとう</rt><rp>)</rp></ruby>けい子です。 <br> &emsp;&emsp;&emsp;どうぞ　よろしく。</div>                    
+                    <div class="col-xs-11"><p onClick="showAndroidToast(52, this)">1.わたしは　マイク。ミラーです。</p></div>
                 </div>
-                <div class="col-xs-6 col-xxs-12">
-                    <img src="img/1.jpg" alt=""/>                    
+
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(53, this)">2．サントスさんは <ruby>学生<rp>(</rp><rt>がくせい</rt><rp>)</rp></ruby>じゃ ありません。 <br> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（では）</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(54, this)">3．ミラーさんは <ruby>会<rp>(</rp><rt>かい</rt><rp>)</rp></ruby><ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>ですか。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(55, this)">４．サントスさんも <ruby>会<rp>(</rp><rt>かい</rt><rp>)</rp></ruby><ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。</p></div>
                 </div>
             </div>
 
-
             <br>
-            <div class="row">
-                <div class="col-xs-12"><ruby>練<rt>れん</rt>習<rt>しゅう</rt></ruby> A</div>
-            </div>
             <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">1.わたしは&emsp;マイク。ミラー&emsp;です。<br> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;かいしゃいん</div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">2.わたしは &emsp; カール。シュミット　&emsp;じゃ　ありません。<br> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;エンジニア</div>
-            </div>            
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">3.あの &emsp; <ruby>人<rt>ひと</rt></ruby>（<ruby>方<rt> かた</rt></ruby>）は　きむらさん &emsp;ですか。<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;マリアさん	<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;だれ（どなた）</div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">4. サントスさんは &emsp; ブラジル<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>です。<br>&emsp;&emsp;マリアさん も &emsp; ブラジル<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>です。<br>&emsp;&emsp;あの人</div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">5.ミラーさん&emsp;は　&emsp;ＩＭＣ &emsp; の &emsp; しゃいんです。<br>&emsp;&emsp;&emsp;カリナさん &emsp; ふじだいがく&emsp;&emsp;がくせいです。</div>
-            </div>            
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">6.テレサちゃんは&emsp;&emsp;9さい &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;です。<br>&emsp;&emsp;たろうくん&emsp;&emsp;&emsp;８さい<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;なんさい（おいくつ）。。。か。</div>
+            <div class="khoang contaner" id="contaner3" itemid="56,61">
+                <div class="row">
+                    <div class="col-xs-12"><p onClick="showAndroidToast(56, this)"><ruby>例<rt>れい</rt>文 <rt>ぶん</rt></ruby></p></div>                
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(57, this)">１．［あなたは］　マイク･ミラーさんですか。<br>　　…はい、［わたしは］　マイク･ミラーです。</p></div>                
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(58, this)">２．ミラーさんは <ruby>学生<rp>(</rp><rt>がくせい</rt><rp>)</rp></ruby>ですか。 <br> …いいえ、［わたしは］ <ruby>学生<rp>(</rp><rt>がくせい</rt><rp>)</rp></ruby>じゃ ありません。 <br><ruby>会<rt>かい</rt>社<rt>しゃ</rt>員<rt>いん</rt>です。</ruby></p></div>                
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(59, this)">３．ワンさんは　エンジニアですか。<br>　　…いいえ、ワンさんは　エンジニアじゃ　ありません。<br><ruby>医<rt>い</rt>者<rt>しゃ</rt>です。</ruby></p></div>  
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(60, this)">４．あの　<ruby>方<rt>かた</rt></ruby>は　どなたですか。<br>…ワットさんです。 さくら<ruby>大学<rp>(</rp><rt>だいがく</rt><rp>)</rp></ruby>の <ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>です。</p></div>  
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(61, this)">５．テレサちゃんは　<ruby>何<rt>なん</rt>歳<rt>さい</rt></ruby>ですか。<br>　　…９<ruby>歳<rt>さい</rt></ruby>です。</p></div>  
+                </div>
             </div>
 
             <br>
+            <br>
             <div class="row">
-                <div class="col-xs-12"><ruby>練<rt>れん</rt>習<rt>しゅう</rt></ruby> B</div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(62, this)"><ruby>会<rt>かい</rt>話<rt>わ</rt></ruby></p></div>                
+            </div>
+
+            <br>
+            <div class="row">
+                <div class="col-xs-12 title"><p onClick="showAndroidToast(63, this)"><ruby>初<rp>(</rp><rt>はじ</rt><rp>)</rp></ruby>めまして</p></div>
+            </div>
+            <br>         
+            <div class="khoang contaner" id="contaner4" itemid="64,66">
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(64, this)"><ruby>佐藤<rp>(</rp><rt>さとう</rt><rp>)</rp></ruby>: おはよう ございます。</p></div>  
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(65, this)"><ruby>山田<rp>(</rp><rt>やまだ</rt><rp>)</rp></ruby>: おはよう ございます。<br>&emsp;&emsp;&emsp; <ruby>佐藤<rp>(</rp><rt>さとう</rt><rp>)</rp></ruby>さん、こちらは マイク･ミラーさんです。</p></div>  
+                </div>
+                <div class="row">
+                    <div class="col-xs-1 col-xxs-1"></div>
+                    <div class="col-xs-5 col-xxs-11">
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-11"><p onClick="showAndroidToast(66, this)">ミラー: <ruby>初<rp>(</rp><rt>はじ</rt><rp>)</rp></ruby>めまして。<br>&emsp;&emsp;&emsp; マイク･ミラーです。<br>&emsp;&emsp;&emsp; アメリカから　ました。<br>&emsp;&emsp;&emsp; どうぞ　よろしく。</p></div>
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-11"><ruby>佐藤<rp>(</rp><rt>さとう</rt><rp>)</rp></ruby>： <ruby>佐藤<rp>(</rp><rt>さとう</rt><rp>)</rp></ruby>けい子です。 <br> &emsp;&emsp;&emsp;どうぞ　よろしく。</div>                    
+                    </div>
+                    <div class="col-xs-6 col-xxs-12">
+                        <img src="img/1.jpg" alt=""/>                    
+                    </div>
+                </div>
+            </div>
+
+
+            <br>
+            <div class="row">
+                <div class="col-xs-12"><p onClick="showAndroidToast(67, this)"><ruby>練<rt>れん</rt>習<rt>しゅう</rt></ruby> A</p></div>
+            </div>
+            <br>
+            <div class="khoang contaner" id="contaner5" itemid="68,73">
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(68, this)">1.わたしは&emsp;マイク。ミラー&emsp;です。<br> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;かいしゃいん</p></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(69, this)">2.わたしは &emsp; カール。シュミット　&emsp;じゃ　ありません。<br> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;エンジニア</p></div>
+                </div>            
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(70, this)">3.あの &emsp; <ruby>人<rt>ひと</rt></ruby>（<ruby>方<rt> かた</rt></ruby>）は　きむらさん &emsp;ですか。<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;マリアさん	<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;だれ（どなた）</p></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(71, this)">4. サントスさんは &emsp; ブラジル<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>です。<br>&emsp;&emsp;マリアさん も &emsp; ブラジル<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>です。<br>&emsp;&emsp;あの人</p></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(72, this)">5.ミラーさん&emsp;は　&emsp;ＩＭＣ &emsp; の &emsp; しゃいんです。<br>&emsp;&emsp;&emsp;カリナさん &emsp; ふじだいがく&emsp;&emsp;がくせいです。</p></div>
+                </div>            
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(73, this)">6.テレサちゃんは&emsp;&emsp;9さい &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;です。<br>&emsp;&emsp;たろうくん&emsp;&emsp;&emsp;８さい<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;なんさい（おいくつ）。。。か。</p></div>
+                </div>
+            </div>
+
+            <br>
+            <div class="row">
+                <div class="col-xs-12"><p onClick="showAndroidToast(74, this)"><ruby>練<rt>れん</rt>習<rt>しゅう</rt></ruby> B</p></div>
             </div>
             <br>
             <div class="row">
@@ -435,330 +491,336 @@
                 </div>
             </div>
 
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">1.<ruby>例<rt>れい</rt></ruby>：->　ミラーさんは　アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp></rp></ruby>です。</div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">2. <ruby>例<rt>れい</rt></ruby>：-> ミラーさんは <ruby>会<rp>(</rp><rt>かい</rt><rp>)</rp></ruby><ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。</div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">3. <ruby>例<rt>れい</rt></ruby>： ミラーさん。<ruby>銀<rp>(</rp><rt>ぎん</rt><rp>)</rp></ruby><ruby>行員<rp>(</rp><rt>こういん</rt><rp>)</rp></ruby> &emsp;->&emsp; ミラーさんは <ruby>銀<rp>(</rp><rt>ぎん</rt><rp>)</rp></ruby><ruby>行員<rp>(</rp><rt>こういん</rt><rp>)</rp></ruby>じゃ ありません</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-2"></div>
-                <div class="col-xs-10">1）<ruby>山<rt>やま</rt>田<rt>だ</rt></ruby>さん。エンジニア -></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-2"></div>
-                <div class="col-xs-10">2）ワットさん・ドイツ<ruby>人<rt>じん</rt></ruby> -></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-2"></div>
-                <div class="col-xs-10">3）タワポンさん・<ruby>先<rt>せん</rt>生<rt>せい</rt></ruby> -></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-2"></div>
-                <div class="col-xs-10">4）シュミットさん・アメリカ<ruby>人<rt>じん</rt></ruby> -></div>
-            </div>
-            <br>
+            <div class="khoang contaner" id="contaner6" itemid="75,95">
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(75, this)">1.<ruby>例<rt>れい</rt></ruby>：->　ミラーさんは　アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp></rp></ruby>です。</p></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(76, this)">2. <ruby>例<rt>れい</rt></ruby>：-> ミラーさんは <ruby>会<rp>(</rp><rt>かい</rt><rp>)</rp></ruby><ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。</p></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(77, this)">3. <ruby>例<rt>れい</rt></ruby>： ミラーさん。<ruby>銀<rp>(</rp><rt>ぎん</rt><rp>)</rp></ruby><ruby>行員<rp>(</rp><rt>こういん</rt><rp>)</rp></ruby> &emsp;->&emsp; ミラーさんは <ruby>銀<rp>(</rp><rt>ぎん</rt><rp>)</rp></ruby><ruby>行員<rp>(</rp><rt>こういん</rt><rp>)</rp></ruby>じゃ ありません</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-10"><p onClick="showAndroidToast(78, this)">1）<ruby>山<rt>やま</rt>田<rt>だ</rt></ruby>さん。エンジニア -></p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-10"><p onClick="showAndroidToast(79, this)">2）ワットさん・ドイツ<ruby>人<rt>じん</rt></ruby> -></p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-10"><p onClick="showAndroidToast(80, this)">3）タワポンさん・<ruby>先<rt>せん</rt>生<rt>せい</rt></ruby> -></p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-10"><p onClick="showAndroidToast(81, this)">4）シュミットさん・アメリカ<ruby>人<rt>じん</rt></ruby> -></p></div>
+                </div>
+                <br>
 
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">4.<ruby>例<rt>れい</rt></ruby>：ミラーさん。アメリカ <ruby>人<rt>じん</rt></ruby>　ミラーさんは　アメリカ<ruby>人<rt>じん</rt></ruby>　ですか。<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;......はい、アメリカ人<ruby>人<rt>じん</rt></ruby>です。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11"><ruby>例<rt>れい</rt></ruby>： ミラーさん。<ruby>医<rt>い</rt>者<rt>しゃ</rt></ruby> ->　ミラーさんは　<ruby>医<rt>い</rt>者<rt>しゃ</rt></ruby> ですか。<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;。。。いいえ、<ruby>医<rt>い</rt>者<rt>しゃ</rt></ruby> じゃありません。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-2"></div>
-                <div class="col-xs-10">1) <ruby>山<rt>やま</rt>田<rt>だ</rt></ruby>さん・<ruby>銀<rt>ぎん</rt>行<rt>こう</rt>員<rt>いん</rt></ruby></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-2"></div>
-                <div class="col-xs-10">2) ワットさん・フランス<ruby>人<rt>じん</rt></ruby></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-2"></div>
-                <div class="col-xs-10">3) タワポンさん。<ruby>会<rp>(</rp><rt>かい</rt><rp>)</rp></ruby><ruby>社員<rp>(</rp><rt>しゃいん</rt><rp></rp></ruby></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-2"></div>
-                <div class="col-xs-10">4) シュミットさん。エンジニア</div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(82, this)">4.<ruby>例<rt>れい</rt></ruby>：ミラーさん。アメリカ <ruby>人<rt>じん</rt></ruby>　ミラーさんは　アメリカ<ruby>人<rt>じん</rt></ruby>　ですか。<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;......はい、アメリカ人<ruby>人<rt>じん</rt></ruby>です。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(83, this)"><ruby>例<rt>れい</rt></ruby>： ミラーさん。<ruby>医<rt>い</rt>者<rt>しゃ</rt></ruby> ->　ミラーさんは　<ruby>医<rt>い</rt>者<rt>しゃ</rt></ruby> ですか。<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;。。。いいえ、<ruby>医<rt>い</rt>者<rt>しゃ</rt></ruby> じゃありません。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-10"><p onClick="showAndroidToast(84, this)">1) <ruby>山<rt>やま</rt>田<rt>だ</rt></ruby>さん・<ruby>銀<rt>ぎん</rt>行<rt>こう</rt>員<rt>いん</rt></ruby></p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-10"><p onClick="showAndroidToast(85, this)">2) ワットさん・フランス<ruby>人<rt>じん</rt></ruby></p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-10"><p onClick="showAndroidToast(86, this)">3) タワポンさん。<ruby>会<rp>(</rp><rt>かい</rt><rp>)</rp></ruby><ruby>社員<rp>(</rp><rt>しゃいん</rt><rp></rp></ruby></p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-10"><p onClick="showAndroidToast(87, this)">4) シュミットさん。エンジニア</p></div>
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(88, this)">5.<ruby>例<rt>れい</rt></ruby>：ミラーさんは <ruby>会<rp>(</rp><rt>かい</rt><rp>)</rp></ruby><ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。グプタさんも <ruby>会<rp>(</rp><rt>かい</rt><rp>)</rp></ruby><ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。<br>&emsp;&emsp;&emsp;はい、グプタさんも <ruby>会<rp>(</rp><rt>かい</rt><rp>)</rp></ruby><ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(89, this)"><ruby>例<rt>れい</rt></ruby>：ミラーさんは アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>です。 グプタさんも アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>ですか。<br>&emsp;&emsp;&emsp;いいえ、グプタさんは アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>じゃ ありません。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-10"><p onClick="showAndroidToast(90, this)">1） <ruby>山<rt>やま</rt>田<rt>だ</rt></ruby>さんは <ruby>銀<rp>(</rp><rt>ぎん</rt><rp>)</rp></ruby><ruby>行員<rp>(</rp><rt>こういん</rt><rp>)</rp></ruby>です。イーサンも<ruby>銀<rp>(</rp><rt>ぎん</rt><rp>)</rp></ruby><ruby>行員<rp>(</rp><rt>こういん</rt><rp>)</rp></ruby>ですか。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-10"><p onClick="showAndroidToast(91, this)">2） ワットさんは <ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>です。ワンさんも<ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>ですか。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-10"><p onClick="showAndroidToast(92, this)">3） タワポンさんは <ruby>学生<rp>(</rp><rt>がくせい</rt><rp>)</rp></ruby>です。カリナさんも <ruby>学生<rp>(</rp><rt>がくせい</rt><rp>)</rp></ruby>ですか。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-10"><p onClick="showAndroidToast(93, this)">4） シュミットさんは ドイツ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>です。サントスさんも ドイツ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>ですか。</p></div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(94, this)">6.<ruby>例<rt>れい</rt></ruby>： あの <ruby>方<rp>(</rp><rt>かた</rt><rp>)</rp></ruby>は どなたですか。<br>&emsp;&emsp;&emsp;。。。グプタさんです。ＩＭＣの <ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。</p></div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(95, this)">7.<ruby>例<rt>れい</rt></ruby>： グプタさんは 42<ruby>歳<rt>さい</rt>です</p></div>
+                </div>
             </div>
 
             <br>
-
             <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">5.<ruby>例<rt>れい</rt></ruby>：ミラーさんは <ruby>会<rp>(</rp><rt>かい</rt><rp>)</rp></ruby><ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。グプタさんも <ruby>会<rp>(</rp><rt>かい</rt><rp>)</rp></ruby><ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。<br>&emsp;&emsp;&emsp;はい、グプタさんも <ruby>会<rp>(</rp><rt>かい</rt><rp>)</rp></ruby><ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11"><ruby>例<rt>れい</rt></ruby>：ミラーさんは アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>です。 グプタさんも アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>ですか。<br>&emsp;&emsp;&emsp;いいえ、グプタさんは アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>じゃ ありません。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-2"></div>
-                <div class="col-xs-10">1） <ruby>山<rt>やま</rt>田<rt>だ</rt></ruby>さんは <ruby>銀<rp>(</rp><rt>ぎん</rt><rp>)</rp></ruby><ruby>行員<rp>(</rp><rt>こういん</rt><rp>)</rp></ruby>です。イーサンも<ruby>銀<rp>(</rp><rt>ぎん</rt><rp>)</rp></ruby><ruby>行員<rp>(</rp><rt>こういん</rt><rp>)</rp></ruby>ですか。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-2"></div>
-                <div class="col-xs-10">2） ワットさんは <ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>です。ワンさんも<ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>ですか。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-2"></div>
-                <div class="col-xs-10">3） タワポンさんは <ruby>学生<rp>(</rp><rt>がくせい</rt><rp>)</rp></ruby>です。カリナさんも <ruby>学生<rp>(</rp><rt>がくせい</rt><rp>)</rp></ruby>ですか。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-2"></div>
-                <div class="col-xs-10">4） シュミットさんは ドイツ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>です。サントスさんも ドイツ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>ですか。</div>
-            </div>
-            <br>
-
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">6.<ruby>例<rt>れい</rt></ruby>： あの <ruby>方<rp>(</rp><rt>かた</rt><rp>)</rp></ruby>は どなたですか。<br>&emsp;&emsp;&emsp;。。。グプタさんです。ＩＭＣの <ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。</div>
-            </div>
-            <br>
-
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">7.<ruby>例<rt>れい</rt></ruby>： グプタさんは 42<ruby>歳<rt>さい</rt>です</div>
-            </div>
-
-            <br>
-            <div class="row">
-                <div class="col-xs-12"><ruby>練<rt>れん</rt>習<rt>しゅう</rt></ruby> C</div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(96, this)"><ruby>練<rt>れん</rt>習<rt>しゅう</rt></ruby> C</p></div>
             </div>            
             <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">1. Ａ：<ruby>失<rt>しつ</rt>礼<rt>れい</rt></ruby>ですが、お<ruby>名前<rp>(</rp><rt>なまえ</rt></ruby></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;Ｂ：イーです。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;Ａ： リーさんですか。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1 col-xxs-1"></div>
-                <div class="col-xs-7 col-xxs-11">
+            <div class="khoang contaner" id="contaner7" itemid="97,107">
+                <div class="row">
                     <div class="col-xs-1"></div>
-                    <div class="col-xs-11">&emsp;Ｂ： いいえ、イーです。</div>            
-                    <div class="col-xs-2"></div>
-                    <div class="col-xs-10">1）サントス <br> &emsp;&emsp;サンタス</div>            
-                    <div class="col-xs-2"></div>
-                    <div class="col-xs-10">2）ワット<br> &emsp;&emsp;アット</div>            
-                    <div class="col-xs-2"></div>
-                    <div class="col-xs-10">3）タワポン<br> &emsp;&emsp;タナポン</div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(97, this)">1. Ａ：<ruby>失<rt>しつ</rt>礼<rt>れい</rt></ruby>ですが、お<ruby>名前<rp>(</rp><rt>なまえ</rt></ruby></p></div>
                 </div>
-                <div class="col-xs-4 col-xxs-12">
-                    <img src="img/3.jpg" alt=""/>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(98, this)">&emsp;Ｂ：イーです。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(99, this)">&emsp;Ａ： リーさんですか。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1 col-xxs-1"></div>
+                    <div class="col-xs-7 col-xxs-11">
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-11"><p onClick="showAndroidToast(100, this)">&emsp;Ｂ： いいえ、イーです。</p></div>            
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-10">1）サントス <br> &emsp;&emsp;サンタス</div>            
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-10">2）ワット<br> &emsp;&emsp;アット</div>            
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-10">3）タワポン<br> &emsp;&emsp;タナポン</div>
+                    </div>
+                    <div class="col-xs-4 col-xxs-12">
+                        <img src="img/3.jpg" alt=""/>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(101, this)">2. Ａ：<ruby>初<rp>(</rp><rt>はじ</rt><rp>)</rp></ruby>めまして。 マイク・ミラーです。 <br>&emsp;&emsp;&emsp;アメリカから <ruby>来<rp>(</rp><rt>き</rt><rp>)</rp></ruby>ました。 どうぞ よろしく。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(102, this)">&emsp;Ｂ：<ruby>佐藤<rp>(</rp><rt>さとう</rt><rp>)</rp></ruby>です。 どうぞ よろしく。</p></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-1 col-xxs-1"></div>
+                    <div class="col-xs-7 col-xxs-11">
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-10"><p onClick="showAndroidToast(103, this)">1）ホセ・サントス <br> &emsp;&emsp;ブラジル</p></div>
+
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-10">1）カリナ <br> &emsp;&emsp;インドネシア</div>
+
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-10">2）ワン <br> &emsp;&emsp;<ruby>中国<rp>(</rp><rt>ちゅうごく</rt><rp></rp></ruby></div>
+                    </div>
+                    <div class="col-xs-4 col-xxs-12">
+                        <img src="img/4.jpg" alt=""/>
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(104, this)">３．Ａ： <ruby>皆<rp>(</rp><rt>みな</rt><rp>)</rp></ruby>さん、こちらは マイク・ミラーさんです。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(105, this)">&emsp;&emsp;Ｂ：おはよう　ございます。　マイク・ミラーです。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(106, this)">&emsp;&emsp;&emsp;&emsp;ＩＭＣの <ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。 どうぞ よろしく お<ruby>願い<rp>(</rp><rt>ねがい</rt><rp>)</rp></ruby>します。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2 col-xxs-1"></div>
+                    <div class="col-xs-6 col-xxs-11">
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-11"><p onClick="showAndroidToast(107, this)">1）ホセ・サントス <br> &emsp;&emsp;ブラジルエアーの <ruby>社員<rp>(</rp><rt>しゃいん</rt><rp></rp></ruby></p></div>           
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-11">2）ジョン・ワット <br> &emsp;&emsp;さくら大学の <ruby>教師<rp>(</rp><rt>きょうし</rt><rp></rp></ruby></div>          
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-11">3）カール・シュミット <br> &emsp;&emsp;パワー<ruby>電気<rp>(</rp><rt>でんき</rt><rp>)</rp></ruby>の エンジニア</div>
+                    </div>
+                    <div class="col-xs-4 col-xxs-12">
+                        <img src="img/5.jpg" alt=""/>
+                    </div>
                 </div>
             </div>
             <br>
             <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">2. Ａ：<ruby>初<rp>(</rp><rt>はじ</rt><rp>)</rp></ruby>めまして。 マイク・ミラーです。 <br>&emsp;&emsp;&emsp;アメリカから <ruby>来<rp>(</rp><rt>き</rt><rp>)</rp></ruby>ました。 どうぞ よろしく。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;Ｂ：<ruby>佐藤<rp>(</rp><rt>さとう</rt><rp>)</rp></ruby>です。 どうぞ よろしく。</div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-1 col-xxs-1"></div>
-                <div class="col-xs-7 col-xxs-11">
-                    <div class="col-xs-2"></div>
-                    <div class="col-xs-10">1）ホセ・サントス <br> &emsp;&emsp;ブラジル</div>
-
-                    <div class="col-xs-2"></div>
-                    <div class="col-xs-10">2）カリナ <br> &emsp;&emsp;インドネシア</div>
-
-                    <div class="col-xs-2"></div>
-                    <div class="col-xs-10">3）ワン <br> &emsp;&emsp;<ruby>中国<rp>(</rp><rt>ちゅうごく</rt><rp></rp></ruby></div>
-                </div>
-                <div class="col-xs-4 col-xxs-12">
-                    <img src="img/4.jpg" alt=""/>
-                </div>
-
-
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">３．Ａ： <ruby>皆<rp>(</rp><rt>みな</rt><rp>)</rp></ruby>さん、こちらは マイク・ミラーさんです。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;Ｂ：おはよう　ございます。　マイク・ミラーです。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;&emsp;&emsp;ＩＭＣの <ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。 どうぞ よろしく お<ruby>願い<rp>(</rp><rt>ねがい</rt><rp>)</rp></ruby>します。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-2 col-xxs-1"></div>
-                <div class="col-xs-6 col-xxs-11">
-                    <div class="col-xs-1"></div>
-                    <div class="col-xs-11">1）ホセ・サントス <br> &emsp;&emsp;ブラジルエアーの <ruby>社員<rp>(</rp><rt>しゃいん</rt><rp></rp></ruby></div>           
-                    <div class="col-xs-1"></div>
-                    <div class="col-xs-11">2）ジョン・ワット <br> &emsp;&emsp;さくら大学の <ruby>教師<rp>(</rp><rt>きょうし</rt><rp></rp></ruby></div>          
-                    <div class="col-xs-1"></div>
-                    <div class="col-xs-11">3）カール・シュミット <br> &emsp;&emsp;パワー<ruby>電気<rp>(</rp><rt>でんき</rt><rp>)</rp></ruby>の エンジニア</div>
-                </div>
-                <div class="col-xs-4 col-xxs-12">
-                    <img src="img/5.jpg" alt=""/>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-12"><ruby>問題<rp>(</rp><rt>もんだい</rt><rp>)</rp></ruby></div>
+                <div class="col-xs-12"><p onClick="showAndroidToast(108, this)"><ruby>問題<rp>(</rp><rt>もんだい</rt><rp>)</rp></ruby></p></div>
             </div>             
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">1. <ruby>例<rt>れい</rt></ruby>: いいえ、［わたしは］ <ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>じゃ ありません。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;1）。。。<ruby>例<rt>れい</rt></ruby>：いいえ、わたしは　サントスではありません。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;2）。。。<ruby>例<rt>れい</rt></ruby>：マイク。ミラーです。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;3）。。。<ruby>例<rt>れい</rt></ruby>：28<ruby>歳<rp>(</rp><rt>さい</rt><rp>)</rp></ruby>です。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;4）。。。<ruby>例<rt>れい</rt></ruby>：はい、アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>です</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;5）。。。<ruby>例<rt>れい</rt></ruby>：いいえ、エンジニアじゃありません。</div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">2. &emsp;<ruby>例<rt>れい</rt></ruby>: &nbsp;<img class="img-thumbnail" src="img/6.jpg" alt=""/></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;1）: <img class="img-thumbnail" src="img/7.jpg" alt=""/></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;2）: <img class="img-thumbnail" src="img/8.jpg" alt=""/></div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-3">3. &emsp;<ruby>例<rt>れい</rt></ruby>1: </div>
-                <div class="col-xs-8">&emsp;&emsp;<ruby>例<rt>れい</rt></ruby>2: </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-3">&emsp;&emsp;1）:</div>
-                <div class="col-xs-3">&emsp;&emsp;2）:</div>
-                <div class="col-xs-5">&emsp;&emsp;3）:</div>
-            </div>
+            <div class="khoang contaner" id="contaner8" itemid="109,139">
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(109, this)">1. <ruby>例<rt>れい</rt></ruby>: いいえ、［わたしは］ <ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>じゃ ありません。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(110, this)">&emsp;&emsp;1）。。。<ruby>例<rt>れい</rt></ruby>：いいえ、わたしは　サントスではありません。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(111, this)">&emsp;&emsp;2）。。。<ruby>例<rt>れい</rt></ruby>：マイク。ミラーです。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(112, this)">&emsp;&emsp;3）。。。<ruby>例<rt>れい</rt></ruby>：28<ruby>歳<rp>(</rp><rt>さい</rt><rp>)</rp></ruby>です。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(113, this)">&emsp;&emsp;4）。。。<ruby>例<rt>れい</rt></ruby>：はい、アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>です</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(114, this)">&emsp;&emsp;5）。。。<ruby>例<rt>れい</rt></ruby>：いいえ、エンジニアじゃありません。</p></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(115, this)">2. &emsp;<ruby>例<rt>れい</rt></ruby>: &nbsp;<img class="img-thumbnail" src="img/6.jpg" alt=""/></p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(116, this)">&emsp;&emsp;1）: <img class="img-thumbnail" src="img/7.jpg" alt=""/></p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(117, this)">&emsp;&emsp;2）: <img class="img-thumbnail" src="img/8.jpg" alt=""/></p></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-3"><p onClick="showAndroidToast(118, this)">3. &emsp;<ruby>例<rt>れい</rt></ruby>1: </p></div>
+                    <div class="col-xs-8">&emsp;&emsp;<ruby>例<rt>れい</rt></ruby>2: </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-3"><p onClick="showAndroidToast(119, this)">&emsp;&emsp;1）:</p></div>
+                    <div class="col-xs-3">&emsp;&emsp;2）:</div>
+                    <div class="col-xs-5">&emsp;&emsp;3）:</div>
+                </div>
 
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">4.<ruby>例<rt>れい</rt></ruby>: あなたは (<ruby>学生<rp>(</rp><rt>がくせい</rt><rp>)</rp></ruby>)ですか。</div>
-            </div>             
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;．．．．はい、<ruby>学生<rp>(</rp><rt>がくせい</rt><rp>)</rp></ruby>です。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;1）あなたは &emsp;(ミラーさん)&emsp;ですか。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;。。。はい、わたしはミラーです。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;2）ミラーさんは （アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>）ですか。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;。。。はい、アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>です。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;3） ワットさんも（アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>）ですか。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;。。。いいえ、アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>じゃありません・イギリス人です。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;4） あの <ruby>方<rp>(</rp><rt>かた</rt><rp>)</rp></ruby>は （どなた （だれ） ）ですか。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;。。。サントスさんです。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;5）  テレサちゃんは （<ruby>何歳<rp>(</rp><rt>なんさい</rt><rp>)</rp></ruby> （おいくつ） ） ですか。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;。。。9<ruby>歳<rp>(</rp><rt>さい</rt><rp>)</rp></ruby>です。</div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">5.<ruby>例<rt>れい</rt></ruby>: わたし　（は）ミラーです。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;1）ワンさん（は）<ruby>医者<rp>(</rp><rt>いしゃ</rt><rp>)</rp></ruby>です。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;2）カリナさん （は） <ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>です （か）。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;&emsp;…いいえ、<ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>じゃ ありません</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;3）ミラーさんは ＩＭＣ （の） <ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;4）ミラーさんは <ruby>会<rp>(</rp><rt>かい</rt><rp>)</rp></ruby><ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">&emsp;&emsp;&emsp;サントスさん　（も）　<ruby>会<rt>かい</rt>社<rt>しゃ</rt>員<rt>いん</rt></ruby>です。</div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-11">6.<ruby>初<rt>はじ</rt></ruby>めまして。 <br>&emsp;わたしは　（マイク・ミラー）です。<br>&emsp;（アメリカ）　から　来ました。<br>&emsp;どうぞ　よろしく。</div>
-            </div>
-            <br>
-            <br>
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(120, this)">4.<ruby>例<rt>れい</rt></ruby>: あなたは (<ruby>学生<rp>(</rp><rt>がくせい</rt><rp>)</rp></ruby>)ですか。</p></div>
+                </div>             
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(121, this)">&emsp;&emsp;．．．．はい、<ruby>学生<rp>(</rp><rt>がくせい</rt><rp>)</rp></ruby>です。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(122, this)">&emsp;1）あなたは &emsp;(ミラーさん)&emsp;ですか。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(123, this)">&emsp;&emsp;。。。はい、わたしはミラーです。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(124, this)">&emsp;2）ミラーさんは （アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>）ですか。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(125, this)">&emsp;&emsp;。。。はい、アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>です。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(126, this)">&emsp;3） ワットさんも（アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>）ですか。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(127, this)">&emsp;&emsp;。。。いいえ、アメリカ<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>じゃありません・イギリス人です。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(128, this)">&emsp;4） あの <ruby>方<rp>(</rp><rt>かた</rt><rp>)</rp></ruby>は （どなた （だれ） ）ですか。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(129, this)">&emsp;&emsp;。。。サントスさんです。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(130, this)">&emsp;5）  テレサちゃんは （<ruby>何歳<rp>(</rp><rt>なんさい</rt><rp>)</rp></ruby> （おいくつ） ） ですか。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(131, this)">&emsp;&emsp;。。。9<ruby>歳<rp>(</rp><rt>さい</rt><rp>)</rp></ruby>です。</p></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(132, this)">5.<ruby>例<rt>れい</rt></ruby>: わたし　（は）ミラーです。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(133, this)">&emsp;1）ワンさん（は）<ruby>医者<rp>(</rp><rt>いしゃ</rt><rp>)</rp></ruby>です。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(134, this)">&emsp;2）カリナさん （は） <ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>です （か）。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(135, this)">&emsp;&emsp;&emsp;…いいえ、<ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>じゃ ありません</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(136, this)">&emsp;3）ミラーさんは ＩＭＣ （の） <ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(137, this)">&emsp;4）ミラーさんは <ruby>会<rp>(</rp><rt>かい</rt><rp>)</rp></ruby><ruby>社員<rp>(</rp><rt>しゃいん</rt><rp>)</rp></ruby>です。</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(138, this)">&emsp;&emsp;&emsp;サントスさん　（も）　<ruby>会<rt>かい</rt>社<rt>しゃ</rt>員<rt>いん</rt></ruby>です。</p></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11"><p onClick="showAndroidToast(139, this)">6.<ruby>初<rt>はじ</rt></ruby>めまして。 <br>&emsp;わたしは　（マイク・ミラー）です。<br>&emsp;（アメリカ）　から　来ました。<br>&emsp;どうぞ　よろしく。</p></div>
+                </div>
+                <br>
+                <br>
 
+            </div>
         </div>
 
     </body>

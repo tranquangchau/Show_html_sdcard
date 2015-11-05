@@ -5,14 +5,14 @@ p{
 *{margin:0;padding:0}
 body{
     font-family:Arial, Helvetica, sans-serif;
-    background:#eee
+    background:#FFFFFF;
 }
 #menu{
     position:fixed;
     display:none;
     z-index: 1;
 }
-ul{
+.menu > ul{
     width:100px;
     list-style:none;
     background:#0F5160;
@@ -56,7 +56,7 @@ ul li ul{
     color: red;   
 }
 .contaner {
-    background-color: #AD9595;   
+       
 }
 .banner{
     position: fixed;
@@ -68,3 +68,38 @@ ul li ul{
 }
 
 .navbar {min-height:28px !important;}
+.container
+{
+    margin-top: 30px;
+}
+.navbar {
+    padding: 0;
+    transition: background 0.5s ease-in-out 0s, padding 0.5s ease-in-out 0s;
+}
+.navbar-nav > li > a {
+    padding-top:10px !important; padding-bottom:10px !important;
+    
+}
+.navbar-brand {
+    float: left;
+    font-size: 15px !important;
+    height: 10px;
+    line-height: 2px;
+    padding: 5px,30px;
+}
+
+.ui-page, .ui-overlay-c { 
+background:#ffffff;
+}
+
+.checkbox-inline >label{
+    -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.ui-focus {
+ -moz-box-shadow: none !important;
+ -webkit-box-shadow: none !important;
+ box-shadow: none !important;
+}

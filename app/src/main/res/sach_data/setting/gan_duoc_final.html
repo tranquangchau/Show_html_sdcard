@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+		-->
+		<script src="http://192.168.0.15/a/sach/js/jquery-1.10.2.min.js"></script>		
+        <script src="http://192.168.0.15/a/sach/js/jquery.mobile-1.4.5.min.js"></script>
+        <meta charset=utf-8 />
+        <title>Demo Context Menu Tabhold</title>
+
+        <style>
+            *{margin:0;padding:0}
+            body{
+                font-family:Arial, Helvetica, sans-serif;
+                background:#eee
+            }
+            #menu{
+                position:fixed;
+                display:none;
+            }
+            ul{
+                width:150px;
+                list-style:none;
+                background:#0F5160;
+                border:1px solid #faf5f7;
+            }
+            ul li{
+                border-top:1px solid #faf5f7;
+                position:relative;
+            }
+            ul li a{
+                color:#fff;
+                text-decoration:none;
+                text-transform:uppercase;
+                display:block;
+                width:100%;height:100%;
+                padding:8px 0;
+                text-indent:20px;
+                font-size:12px;
+                font-weight:bold;
+            }
+            ul li a:hover{
+                background:#2A7C90;
+            }
+            ul li ul{
+                position:absolute;
+                top:0;
+                left:150px;
+                display:none;
+            }
+            #menu>li:hover ul{
+                display:block
+            }
+
+        </style>
+
+        <script>
+            $(function () {
+
+                $(document).on('vmousedown', function (event) {
+                    holdCords.holdX = event.pageX;
+                    holdCords.holdY = event.pageY;
+                });
+
+                //$(document).on('taphold', function(e){
+                //alert('X: ' + holdCords.holdX + ' Y: ' + holdCords.holdY ); 
+                //});
+
+                var holdCords = {
+                    holdX: 0,
+                    holdY: 0
+                }
+
+                var $menu = $('#menu');
+                var $wMenu = $menu.outerWidth();
+                var $hMenu = $menu.outerHeight();
+                var $menuSub = $('#menu ul');
+
+                var $leftSub = parseFloat($menuSub.css('left'), 10);
+                var $wSub = $menuSub.outerWidth();
+                $(".khoang").bind('taphold', function (e) {
+
+                    //var xm = $('#contaner').attr('class');
+                    //alert(e.class);
+                    //var myClass = $(this).attr("class");
+                    // alert(myClass);
+
+                    var list_bai = $(this).attr("itemid");
+                    //alert( list_bai );
+                    var string = list_bai;
+                    var array = string.split(",");
+                    alert(array[0]);
+                    bien1=array[0],bien2=array[1];
+
+                    var $leftM = holdCords.holdX, $topM = holdCords.holdY;
+                    //console.log('left: '+$leftM + ' top: '+$topM);
+                    //console.log(holdCords.holdX);
+                    var $rightM = $(this).width() - $leftM;
+                    var $bottomM = $(this).height() - $topM;
+                    if ($rightM < $wMenu) {
+                        $leftM -= $wMenu;
+                    }
+                    if ($bottomM < $hMenu) {
+                        $topM -= $hMenu;
+                    }
+                    $menu.css({left: $leftM, top: $topM, display: 'block'});
+
+                    //video2
+                    var $rsubMenu = $(this).width() - $leftM - $wMenu;
+                    if ($rsubMenu < $wSub) {
+                        $menuSub.css('left', -$leftSub);
+                    } else {
+                        $menuSub.css('left', $leftSub);
+                    }
+                    e.preventDefault();
+                }).click(function () {
+                    $menu.hide();
+                });
+            });
+            var bien1=1,bien2=2;
+            function send_value(){
+                alert(bien1+" to "+bien2);
+            }
+            
+            function test1() {
+                //alert("Function test1");
+                var $menu = $('#menu');
+                $menu.hide();
+                send_value();
+            }
+
+            function test2() {
+                //alert("Function test2");
+                var $menu = $('#menu');
+                $menu.hide();
+            }
+        </script>
+    </head>
+    <body>
+        <div class="menu">
+            <ul  id="menu">
+                <li><a onclick="test1()" href="#">Play all part</a></li>    
+                <li><a onclick="test2()" href="#">Cancel</a></li>
+            </ul>
+        </div>
+        <div class="khoang" id="contaner1" itemid="1,5">
+            <div class="box1" onclick="clcikPress()">Show Onli menu<br>12312312<br>123<br>123<br>13<br>12312312<br>123<br>123<br>13<br>12312312<br>123<br>123<br>13</div>  
+        </div>
+
+        <div class="khoang" id="contaner2" itemid="6,10" style="background-color:yellow">
+            <div class="box1" onclick="clcikPress()">AAAAAAAAA<br>12312312<br>123<br>123<br>13<br>12312312<br>123<br>123<br>13<br>12312312<br>123<br>123<br>13</div>  
+        </div>
+
+    </body>
+</html>
